@@ -1,0 +1,19 @@
+version: '3'
+services:
+  homarr:
+    container_name: homarr-stack
+    hostname: homarr
+    networks: 
+      MyMacvlan:
+        ipv4_address: 10.10.20.200
+
+    image: ghcr.io/ajnart/homarr:latest
+    restart: unless-stopped
+    volumes:
+      - /srv/datastore/docker/homarr/configs:/app/data/configs
+      - /srv/datastore/docker/homarr/icons:/app/public/icons
+
+networks:
+  MyMacvlan:
+    external: true
+    name: MyMacvlan
